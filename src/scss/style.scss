@@ -1,0 +1,176 @@
+/* Указываем box sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Убираем внутренние отступы */
+ul[class],
+ol[class] {
+  padding: 0;
+}
+
+/* Убираем внешние отступы */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul[class],
+ol[class],
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Выставляем основные настройки по-умолчанию для body */
+body {
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* Удаляем стандартную стилизацию для всех ul и il, у которых есть атрибут class*/
+ul[class],
+ol[class] {
+  list-style: none;
+}
+
+/* Элементы a, у которых нет класса, сбрасываем до дефолтных стилей */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Упрощаем работу с изображениями */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Указываем понятную периодичность в потоке данных у article*/
+article > * + * {
+  margin-top: 1em;
+}
+
+/* Наследуем шрифты для инпутов и кнопок */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Удаляем все анимации и переходы для людей, которые предпочитай их не использовать */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.main{
+  background: lightgray;
+  min-height: 100vh;
+  display: flex;
+}
+.container{
+  display: flex;
+  margin: auto auto;
+}
+
+.flex-wrapper{
+  padding: 20px 30px;
+  min-width: 400px;
+  background: khaki;
+  font-family: Snell Roundhand, cursive;
+  box-shadow:inset 0px 0px 0px 5px #f00;
+  display: flex;
+  flex-direction: column;
+}
+
+.secondaryHeader{
+  padding-bottom: 10px;
+}
+
+.header{
+  padding: 10px 0;
+}
+
+.add-todo-wrapper{
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  padding-bottom: 10px;
+}
+
+#todos-ul{
+  padding: 0;
+}
+
+.delete_btn{
+  background: none;
+  color: red;
+  position: absolute;
+  right: 5px;
+  padding-left: 5px;
+  border: none;
+}
+
+#todos-ul li{
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  width: 300px;
+  position: relative;
+}
+
+#todos-ul li:not(:last-child){
+  border-bottom: 2px solid;
+  border-color: red;
+}
+
+#todos-ul li:not(:first-child){
+  padding-top: 10px;
+}
+
+.todo:not(:last-child){
+  border-bottom: 2px solid;
+  border-color: red;
+}
+
+.todo:not(:first-child){
+  padding-top: 10px;
+}
+
+.padding-no-task{
+  padding-top: 150px;
+}
+
+.padding-one-task{
+  padding-top: 114px;
+}
+
+.padding-two-task{
+  padding-top: 78px;
+}
+
+.padding-three-task{
+  padding-top: 42px;
+}
+
+.padding-four-and-more-task{
+  padding-top: 10px;
+}
+
+#description-task{
+  width: 250px;
+}
