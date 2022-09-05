@@ -4,8 +4,6 @@ const addInput = document.getElementById('description-task')
 const addButton = document.getElementById('add-task-btn')
 const ul = document.querySelector('#todos-ul')
 const dynamicPadding = document.getElementById('dynamic-padding')
-const deleteButton = document.getElementsByClassName('delete_btn')
-
 
 let todoList = [];
 
@@ -57,7 +55,6 @@ function dynamicPaddingFunction(){
 
 let dynamicId = 0
 addButton.addEventListener('click', () =>{
-    let parsedArray = JSON.parse(localStorage.getItem('todo'))
     if((JSON.parse(localStorage.getItem('todo')))){
         dynamicId = (JSON.parse(localStorage.getItem('todo'))).length
     }
@@ -112,17 +109,14 @@ ul.addEventListener('change', (event) => {
     window.location.reload()
 })
 
-console.log(deleteButton)
-document.querySelectorAll('.delete_btn').forEach(item => {
-       item.addEventListener('click', () => {
-                let idInput = this.id
-                let foundedElem = todoList.findIndex(item => item.id === idInput)
-                todoList.splice(foundedElem, 1)
-                localStorage.setItem('todo', JSON.stringify(todoList))
-                displayMessages()
-                dynamicPaddingFunction()
-                // window.location.reload()//Альтернатива перегрузке(странциа перестаёт слушать, если не зарелоадить страницу)
-            }
-        )
-        }
-)
+ul.addEventListener('click', (event) => {
+    if(event.target && event.target.matches('.delete_btn')){
+        console.log(this)
+        let idInput = this.id
+        let foundedElem = todoList.findIndex(item => item.id === idInput)
+        todoList.splice(foundedElem, 1)
+        localStorage.setItem('todo', JSON.stringify(todoList))
+        displayMessages()
+        dynamicPaddingFunction()
+    }
+})
