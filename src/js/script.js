@@ -11,7 +11,7 @@ let todoList = [];
 
 if (JSON.parse(localStorage.getItem('todo'))){
     todoList = JSON.parse(localStorage.getItem('todo'))
-    displayMessage()
+    displayMessages()
     dynamicPaddingFunction()
 
 }
@@ -57,7 +57,7 @@ function dynamicPaddingFunction(){
 
 let dynamicId = 0
 addButton.addEventListener('click', () =>{
-
+    let parsedArray = JSON.parse(localStorage.getItem('todo'))
     if((JSON.parse(localStorage.getItem('todo')))){
         dynamicId = (JSON.parse(localStorage.getItem('todo'))).length
     }
@@ -76,11 +76,11 @@ addButton.addEventListener('click', () =>{
     console.log(array)
     todoList = array
     localStorage.setItem('todo', JSON.stringify(todoList))
-    displayMessage(array)
+    displayMessages(array)
     dynamicPaddingFunction()
 })
 
-function displayMessage(){
+function displayMessages(){
     let childMustDie = document.querySelector('.todo')
     if(childMustDie){
         ul.removeChild(childMustDie)
@@ -100,7 +100,6 @@ function displayMessage(){
     todo.innerHTML = message
     const clone = todoTemplate.content.cloneNode(true)
     ul.append(clone)
-
 }
 
 
@@ -109,31 +108,21 @@ ul.addEventListener('change', (event) => {
     let foundedElem = todoList.find(item => item.id === idInput)
     foundedElem.checked = !foundedElem.checked
     localStorage.setItem('todo', JSON.stringify(todoList))
-    displayMessage()
+    displayMessages()
+    window.location.reload()
 })
 
-
-ul.addEventListener('contextmenu', (event) => {
-    event.preventDefault()
-
-    let idInput = parseInt(event.target.getAttribute('id'))
-    let foundedElem = todoList.findIndex(item => item.id === idInput)
-    todoList.splice(foundedElem, 1)
-    localStorage.setItem('todo', JSON.stringify(todoList))
-    displayMessage()
-    dynamicPaddingFunction()
-})
-
-Array.prototype.forEach.call(deleteButton, function (item) {
+console.log(deleteButton)
+document.querySelectorAll('.delete_btn').forEach(item => {
        item.addEventListener('click', () => {
                 let idInput = this.id
                 let foundedElem = todoList.findIndex(item => item.id === idInput)
                 todoList.splice(foundedElem, 1)
                 localStorage.setItem('todo', JSON.stringify(todoList))
-                displayMessage()
+                displayMessages()
                 dynamicPaddingFunction()
-                window.location.reload()//Альтернатива перегрузке(странциа перестаёт слушать, если не зарелоадить страницу)
+                // window.location.reload()//Альтернатива перегрузке(странциа перестаёт слушать, если не зарелоадить страницу)
             }
         )
-    }
+        }
 )
